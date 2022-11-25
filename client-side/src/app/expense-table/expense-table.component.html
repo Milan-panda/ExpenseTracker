@@ -1,0 +1,42 @@
+<div class="container">
+    
+</div>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">userID</th>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Body</th>
+      </tr>
+    </thead>
+    <tbody>
+     <tr *ngFor="let row of showData">
+        <td>
+           {{row.userId}}
+          </td>
+          <td>
+            {{row.id}}
+           </td>
+           <td>
+            {{row.title}}
+           </td> 
+           <td>
+            {{row.body}}
+           </td> 
+     </tr>
+    </tbody>
+  </table>
+  <nav>
+    <ul class="pagination">
+      <li class="page-item" [ngClass]="currentPage==1?'disabled':''">
+        <a class="page-link" tabindex="-1" (click)="onPrevious()">Previous</a>
+      </li>
+      <li class="page-item active">
+        <a class="page-link">{{currentPage}}</a>
+      </li>
+      <li class="page-item" [ngClass]="currentPage==10?'disabled':''">
+        <a class="page-link"  (click)="onNext()">Next</a>
+      </li>
+    </ul>
+  </nav>
