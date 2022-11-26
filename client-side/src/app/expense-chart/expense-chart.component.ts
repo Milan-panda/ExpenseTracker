@@ -44,6 +44,26 @@ export class ExpenseChartComponent implements OnInit {
               fontSize:"20px"
             }
           }
+        },
+        {
+          breakpoint: 800,
+          options: {
+            chart: {
+              width: 500
+            },
+            legend: {
+              position: "bottom",
+              fontSize:"20px"
+            }
+          }
+        },
+        {
+          breakpoint: 600,
+          options: {
+            chart: {
+              width: 400
+            }
+          }
         }
       ]
     };

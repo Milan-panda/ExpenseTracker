@@ -1,12 +1,14 @@
-<app-navbar></app-navbar>
-<div class="container m-auto">
+<div class="main-component">
+  <app-navbar></app-navbar>
+  <div class="container m-auto">
     <app-expense-chart></app-expense-chart>
-</div>
+  </div>
 
-<div class="container d-flex justify-content-between">
+  <div class="container d-flex justify-content-between m-auto flex-wrap card-data-component">
     <app-card-data></app-card-data>
     <app-card-data></app-card-data>
     <app-card-data></app-card-data>
     <app-card-data></app-card-data>
+  </div>
+  <app-expense-table></app-expense-table>
 </div>
-<app-expense-table></app-expense-table>
