@@ -8,6 +8,8 @@ import { CardDataComponent } from './card-data/card-data.component';
 import { ExpenseChartComponent } from './expense-chart/expense-chart.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ExpenseTableComponent } from './expense-table/expense-table.component';
+import { PieChartExpenseComponent } from './pie-chart-expense/pie-chart-expense.component';
+import { BarChartExpenseComponent } from './bar-chart-expense/bar-chart-expense.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { ExpenseTableComponent } from './expense-table/expense-table.component';
     CardDataComponent,
     ExpenseChartComponent,
     NavbarComponent,
-    ExpenseTableComponent
+    ExpenseTableComponent,
+    PieChartExpenseComponent,
+    BarChartExpenseComponent
   ],
   imports: [
     BrowserModule,
