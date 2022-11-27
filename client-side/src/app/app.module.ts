@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +14,7 @@ import { BarChartExpenseComponent } from './bar-chart-expense/bar-chart-expense.
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +27,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BarChartExpenseComponent,
     MyProfileComponent,
     NotFoundComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgApexchartsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
