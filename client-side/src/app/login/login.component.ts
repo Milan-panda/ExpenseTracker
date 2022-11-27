@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { DataService } from '../service/data.service';
+import { UserInfoModel } from '../shared/user.model';
 
 @Component({
   selector: 'app-login',
@@ -8,12 +10,16 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  userInfo:UserInfoModel;
   signupForm:FormGroup;
   user={
     email:'',
     password:'',
   };
-  isSubmitted=false;
+
+  constructor(private dataService:DataService){
+
+  }
   ngOnInit(){
     this.signupForm=new FormGroup({
       'email':new FormControl(null,[Validators.required,Validators.email]),
@@ -21,9 +27,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
+
   onSubmit(){
     console.log(this.signupForm);
-    this.isSubmitted=true;
+    this.userInfo = new UserInfoModel();
+    this.userInfo.email=this.signupForm.value.email;
+    this.userInfo.password=this.signupForm.value.password;
+    this.dataService.authUserLogin(this.userInfo).subscribe(res=>{
+      console.log(res);
+      
+    });
   }
   
   submitted(){
