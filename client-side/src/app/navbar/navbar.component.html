@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg d-flex justify-content-center navbar-light p-0">
+<nav class="navbar navbar-expand-lg d-flex justify-content-center p-0">
     <div class="container px-0 navh">
       <a class="navbar-brand p-0" href="/"><img class="w-100" src="../../assets/logo.png" alt=""></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,15 +8,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link px-0" href="/">Dashboard</a>
+            <a class="nav-link px-0" routerLinkActive="active" routerLink="/dashboard">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link px-0" href="/all-expenses">All Expense</a>
+            <a class="nav-link px-0" routerLinkActive="active" routerLink="/all-expense">All Expense</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link px-0" href="/add-expense">Add Expense</a>
-          </li><li class="nav-item">
-          <a class="nav-link" href="/my-profile">My Profile</a>
+         <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/my-profile">My Profile</a>
         </li>
       </ul>
       <form class="d-flex align-items-center">
