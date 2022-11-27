@@ -1,0 +1,35 @@
+
+
+.navh {
+  background-color: #fff;
+}
+.navbar a {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.navbar-brand {
+  margin-left: 20px;
+  height: 60px;
+  width: 60px;
+}
+.navbar button {
+  background: #434ce6;
+  border-radius: 8px;
+  font-family: Open Sans;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  height: 42px;
+  width: 116px;
+  margin: 29px 20px 29px 12px;
+  border: none;
+}
+.navbar button img {
+  padding-right: 8.62px;
+}
+.nav-link {
+  padding: 0;
+  margin: 0px 10px;
+}
