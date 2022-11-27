@@ -1,0 +1,71 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="form-group mb-3">
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            formControlName="firstName"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            formControlName="lastName"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            class="form-control"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              signupForm.get('email').invalid && signupForm.get('email').touched
+            "
+          >
+            Please enter a valid email!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="currency" class="form-label">Currency</label>
+          <select id="currency" class="form-select" formControlName="currency">
+            <option value="rupee">INR | ₹</option>
+            <option value="dollar">USD | $</option>
+            <option value="euro">EUR | €</option>
+            <option value="dinar">AED | د.إ</option>
+            <option value="pound">GBP | £</option>
+          </select>
+        </div>
+        <div class="form-group mb-3">
+          <label for="pasword">Password</label>
+          <input
+            type="text"
+            id="password"
+            formControlName="password"
+            class="form-control"
+          />
+        </div>
+        <div
+          class="alert alert-danger"
+          *ngIf="signupForm.invalid && signupForm.touched"
+        >
+          Please enter all data correctly!
+        </div>
+        <button class="btn btn-success" type="submit" [disabled]="submitted()">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
