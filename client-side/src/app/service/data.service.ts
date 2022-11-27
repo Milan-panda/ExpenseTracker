@@ -12,12 +12,22 @@ export class DataService {
   constructor(private httpClient: HttpClient) {}
 
   public authUserLogin(userInfo: UserInfoModel): Observable<any> {
-    console.log('dataaa', userInfo.email);
-    console.log('dataaa', userInfo.password);
-
     const url = this.apiURL + 'auth';
     let body = {
       email: userInfo.email,
+      password: userInfo.password,
+    };
+    return this.httpClient.post<any>(url, body);
+  }
+
+  public authUserRegister(userInfo: UserInfoModel): Observable<any> {
+    const url = this.apiURL + 'users';
+    let body = {
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+      email: userInfo.email,
+      currency: userInfo.currency,
+      income: userInfo.income,
       password: userInfo.password,
     };
     return this.httpClient.post<any>(url, body);

@@ -12,10 +12,6 @@ export class LoginComponent implements OnInit {
 
   userInfo:UserInfoModel;
   signupForm:FormGroup;
-  user={
-    email:'',
-    password:'',
-  };
 
   constructor(private dataService:DataService){
 
@@ -29,7 +25,6 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit(){
-    console.log(this.signupForm);
     this.userInfo = new UserInfoModel();
     this.userInfo.email=this.signupForm.value.email;
     this.userInfo.password=this.signupForm.value.password;
