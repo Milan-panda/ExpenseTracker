@@ -22,4 +22,25 @@ router.post("/", async (req, res) => {
   }
 });
 
+
+router.put("/:id", async (req, res)=>{
+    if (req.body.password) {
+      const salt = await bcrypt.genSalt(Number(process.env.SALT));
+      req.body.password = await bcrypt.hash(req.body.password, salt);
+    }
+    try {
+      const updateUser = await User.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
+      res.status(200).json(updateUser);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+)
+
 module.exports = router;
