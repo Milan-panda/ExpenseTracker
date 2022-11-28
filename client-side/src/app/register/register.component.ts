@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { DataService } from '../service/data.service';
+import { DataService } from '../services/data.service';
 import { UserInfoModel } from '../shared/user.model';
 
 @Component({

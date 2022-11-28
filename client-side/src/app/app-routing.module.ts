@@ -12,8 +12,8 @@ const routes: Routes = [
   { path: 'dashboard',   component:DashboardComponent},
   {path:'all-expense',component:ExpenseTableComponent},
   {path:'my-profile',component:MyProfileComponent},
-  {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
+  {path:'login',component:LoginComponent},
   {path:'**', component:NotFoundComponent}
 ];
 
