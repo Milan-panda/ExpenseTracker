@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { DataService } from '../services/data.service';
-import { UserInfoModel } from '../shared/user.model';
+import { Router } from '@angular/router';
+import { AuthService } from '../../shared/services/auth.service';
+import { UserInfoModel } from '../../shared/user.model';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,8 +12,10 @@ export class LoginComponent implements OnInit {
 
   userInfo:UserInfoModel;
   signupForm:FormGroup;
+  isLoading=false;
+  errorMsg=null;
 
-  constructor(private dataService:DataService){
+  constructor(private authService:AuthService, private router:Router){
 
   }
   ngOnInit(){
@@ -24,13 +27,23 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit(){
+    this.errorMsg=null;
+    this.isLoading=true;
+    setTimeout(() => {
+      this.isLoading=false;
+    }, 2000);
     this.userInfo = new UserInfoModel();
     this.userInfo.email=this.signupForm.value.email;
     this.userInfo.password=this.signupForm.value.password;
-    this.dataService.authUserLogin(this.userInfo).subscribe(res=>{
+    this.authService.authUserLogin(this.userInfo).subscribe(res=>{
       console.log(res);
-      
-    });
+        this.isLoading=false;
+        this.router.navigate(['/dashboard']);
+    },
+    error =>{
+      console.log(error);
+      }
+    );
   }
   
   submitted(){

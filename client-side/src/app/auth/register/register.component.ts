@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { DataService } from '../services/data.service';
-import { UserInfoModel } from '../shared/user.model';
+import { AuthService } from '../../shared/services/auth.service';
+import { UserInfoModel } from '../../shared/user.model';
 
 @Component({
   selector: 'app-register',
@@ -11,8 +11,10 @@ import { UserInfoModel } from '../shared/user.model';
 export class RegisterComponent implements OnInit {
   userInfo: UserInfoModel;
   signupForm:FormGroup;
+  isLoading=false;
+  errorMsg:string=null;
 
-  constructor(private dataService:DataService){
+  constructor(private authService:AuthService){
 
   }
 
@@ -29,6 +31,12 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
+    this.errorMsg=null;
+    this.isLoading=true;
+    setTimeout(() => {
+      this.isLoading=false;
+    }, 2000);
+
     this.userInfo = new UserInfoModel();
     this.userInfo.firstName = this.signupForm.value.firstName;
     this.userInfo.lastName = this.signupForm.value.lastName;
@@ -37,8 +45,18 @@ export class RegisterComponent implements OnInit {
     this.userInfo.income = this.signupForm.value.income;
     this.userInfo.password = this.signupForm.value.password;
 
-    this.dataService.authUserRegister(this.userInfo).subscribe(res=>{
+    this.authService.authUserRegister(this.userInfo).subscribe(res=>{
       console.log(res);
+      setTimeout(() => {
+        this.isLoading=false;
+      }, 1000);
+    },
+    error =>{
+      console.log(error);
+      setTimeout(() => {
+        this.isLoading=false;
+        this.errorMsg=error.error.message;
+      }, 1000);
     });
     
   }

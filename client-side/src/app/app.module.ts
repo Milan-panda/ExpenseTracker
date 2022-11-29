@@ -14,8 +14,9 @@ import { BarChartExpenseComponent } from './bar-chart-expense/bar-chart-expense.
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { RegisterComponent } from './register/register.component';
     NotFoundComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

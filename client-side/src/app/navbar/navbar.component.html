@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg d-flex justify-content-center p-0">
+<nav class="navbar navbar-expand-lg d-flex justify-content-center p-0" *ngIf="isAuthenticated">
     <div class="container px-0 navh">
       <a class="navbar-brand p-0" href="/"><img class="w-100" src="../../assets/logo.png" alt=""></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,9 +17,9 @@
           <a class="nav-link" routerLinkActive="active" routerLink="/my-profile">My Profile</a>
         </li>
       </ul>
-      <form class="d-flex align-items-center" >
-        <a class="nav-link nav-item" href="#">Logout</a>
-      </form>
+      <li class="nav-item d-flex align-items-center" >
+        <a class="nav-link nav-item" style="cursor: pointer;" (click)="onLogout()">Logout</a>
+      </li>
     </div>
   </div>
 </nav>
