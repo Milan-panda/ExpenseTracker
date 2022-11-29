@@ -11,9 +11,9 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) =>{
+router.use("/", async (req, res) =>{
   try {
-    const expenses = await Expense.find({ email: req.query.email });
+    const expenses = await Expense.find({ email:req.body.email });
     res.status(200).json(expenses);
   } catch (error) {
     res.status(500).send({message: "Internal Server Error"})
