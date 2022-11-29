@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
     const addedExpense = await newExpense.save();
     res.status(200).json(addedExpense);
   } catch (error) {
-    res.status(500).send({ message: "Internal Server Error" });
+    res.status(500).send({ message: error });
   }
 });
 
