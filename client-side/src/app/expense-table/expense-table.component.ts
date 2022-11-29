@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ExpenseDataService } from '../services/expense-data.service';
+import { ExpenseDataService } from '../shared/services/expense-data.service';
 
 @Component({
   selector: 'app-expense-table',
