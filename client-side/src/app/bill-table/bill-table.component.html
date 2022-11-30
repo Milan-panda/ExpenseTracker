@@ -6,7 +6,7 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">Due Date</th>
+        <th scope="col">Date</th>
         <th scope="col">Category</th>
         <th scope="col">Description</th>
         <th scope="col">Amount</th>
@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of (recentBill? data.slice(-5).reverse() : data | paginate: { itemsPerPage: 10, currentPage: p })">
+      <tr *ngFor="let row of (recentBill? data.slice(-5).reverse() : data.reverse() | paginate: { itemsPerPage: 10, currentPage: p })">
         <td>
           {{ row.dueDate }}
         </td>
@@ -28,7 +28,7 @@
           {{ row.amount }}
         </td>
         <td *ngIf="!recentBill">
-          <button class="editButton" (click)="onDelete(row)"><i class="bi bi-trash3-fill"></i></button>
+          <button class="editButton"><i class="bi bi-trash3-fill"></i></button>
         </td>
       </tr>
     </tbody>

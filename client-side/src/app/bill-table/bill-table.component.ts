@@ -13,6 +13,7 @@ export class BillTableComponent implements OnInit, OnChanges {
   data=[];
   showData=[];
   firstTime:boolean=true;
+  
   email=JSON.parse(localStorage.getItem('userData')).email;
   p:number=1;
 
