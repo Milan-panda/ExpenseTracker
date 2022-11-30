@@ -17,7 +17,28 @@
           <a class="nav-link" routerLinkActive="active" routerLink="/my-profile">My Profile</a>
         </li>
       </ul>
-      <button class="notification"><i class="bi bi-bell-fill"></i></button>
+    <div class="dropdown">
+      <a class="dropdown-toggle hidden-arrow notification" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-bell-fill"></i>
+                <span class="badge rounded-pill badge-notification bg-danger">1</span>
+      </a>
+    
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
       <li class="nav-item d-flex align-items-center" >
         <a class="nav-link nav-item" style="cursor: pointer;" (click)="onLogout()">Logout</a>
       </li>

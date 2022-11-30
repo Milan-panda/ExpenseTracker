@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsersService } from '../shared/services/users.service';
 import { UserInfoModel } from '../shared/user.model';
 
@@ -14,7 +15,7 @@ export class MyProfileComponent implements OnInit {
   data;
   isDataAvailable = false;
 
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: UsersService, private router:Router) {}
 
   ngOnInit() {
     // initiate execution
@@ -48,8 +49,11 @@ export class MyProfileComponent implements OnInit {
   }
   onDelete(){
     if(confirm("Are you sure to delete your profile")) {
-      console.log("happy");
-      
+      this.usersService.deleteUsersData(this.data._id).subscribe(res=>{
+        console.log(res);
+        localStorage.removeItem('userData');
+        this.router.navigate(["/login"]);
+      })
     }
   }
 

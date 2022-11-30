@@ -29,4 +29,10 @@ export class UsersService {
     }
     return this.httpClient.put<any>(url,body,{ params: queryParam });
   }
+  public deleteUsersData(id: string): Observable<any> {
+    const url = this.apiURL + 'users';
+    let queryParam = new HttpParams();
+    queryParam = queryParam.append('id', id);
+    return this.httpClient.delete<any>(url, { params: queryParam });
+  }
 }
