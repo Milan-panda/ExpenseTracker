@@ -31,4 +31,11 @@ export class ExpenseDataService {
     };
     return this.httpClient.post<any>(url, body);
   }
+
+  public deleteExpenseData(id: string): Observable<any> {
+    const url = this.apiURL + 'expense';
+    let queryParam = new HttpParams();
+    queryParam = queryParam.append("id",id);
+    return this.httpClient.delete<any>(url,{params:queryParam});
+  }
 }

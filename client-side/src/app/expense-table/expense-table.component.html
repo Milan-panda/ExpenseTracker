@@ -1,5 +1,6 @@
 <div class="container mt-3">
-  <div class="add-expense-modal">
+  <h3 *ngIf="recentTransaction">Recent Transactions</h3>
+  <div class="add-expense-modal" *ngIf="!recentTransaction">
     <app-add-expense (myOutput) ="getUpdatedData($event)"></app-add-expense>
   </div>
   <table class="table table-hover">
@@ -11,10 +12,11 @@
         <th scope="col">Description</th>
         <th scope="col">Expense Type</th>
         <th scope="col">Amount</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of data">
+      <tr *ngFor="let row of (recentTransaction? data.slice(-5).reverse() : data) | paginate: { itemsPerPage: 10, currentPage: p }">
         <td>
           {{ row.date }}
         </td>
@@ -33,20 +35,11 @@
         <td>
           {{ row.amount }}
         </td>
+        <td *ngIf="!recentTransaction">
+          <button class="editButton" (click)="onDelete(row)"><i class="bi bi-trash3-fill"></i></button>
+        </td>
       </tr>
     </tbody>
+    <pagination-controls *ngIf="!recentTransaction" (pageChange)="p = $event"></pagination-controls>
   </table>
-  <nav>
-    <ul class="pagination">
-      <li class="page-item" [ngClass]="currentPage == 1 ? 'disabled' : ''">
-        <a class="page-link" tabindex="-1" (click)="onPrevious()">Previous</a>
-      </li>
-      <li class="page-item active">
-        <a class="page-link">{{ currentPage }}</a>
-      </li>
-      <li class="page-item" [ngClass]="currentPage == 10 ? 'disabled' : ''">
-        <a class="page-link" (click)="onNext()">Next</a>
-      </li>
-    </ul>
-  </nav>
 </div>

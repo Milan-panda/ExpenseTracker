@@ -18,6 +18,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AddExpenseComponent } from './add-expense/add-expense.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AddExpenseComponent } from './add-expense/add-expense.component';
     ReactiveFormsModule,
     NgApexchartsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

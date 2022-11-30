@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ExpenseDataService } from '../shared/services/expense-data.service';
 
 @Component({
@@ -8,15 +8,17 @@ import { ExpenseDataService } from '../shared/services/expense-data.service';
 })
 export class ExpenseTableComponent implements OnInit,OnChanges {
   constructor(private expenseDataService :ExpenseDataService) {}
+  @Input() recentTransaction:boolean;
+  p:number=1
   data = [];
   showData = [];
   firstTime:boolean=true;
   count: number = 1;
   currentPage: number = 1;
   showPrevious: boolean = true;
+  email = JSON.parse(localStorage.getItem('userData')).email;
   ngOnInit(): void {
-    const email = JSON.parse(localStorage.getItem('userData')).email;
-    this.expenseDataService.getTableData(email).subscribe((res) => {      
+    this.expenseDataService.getTableData(this.email).subscribe((res) => {      
       if(res){
         for(let key in res){
           console.log("data",res[key]);
@@ -68,5 +70,24 @@ export class ExpenseTableComponent implements OnInit,OnChanges {
    if(!this.firstTime){
     this.data.push(data);
    }   
+  }
+
+  onDelete(event){
+    
+    this.expenseDataService.deleteExpenseData(event._id).subscribe(res=>{
+      this.data.forEach((row,index) => {
+     
+        
+        if(row._id==event._id){
+          console.log("found");
+          
+          this.data.splice(index,1);
+        }
+        
+      });
+      console.log("data",this.data);
+      
+      
+    })
   }
 }
