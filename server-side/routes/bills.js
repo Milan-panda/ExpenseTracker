@@ -20,4 +20,15 @@ router.get("/", async (req, res) =>{
   }
 })
 
+router.delete("/", async (req, res)=>{
+ 
+  try {
+    const bill = await Bill.findByIdAndDelete({_id:req.query.id});
+    res.status(200).send({message: "deleted"});
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
+)
+
 module.exports = router;

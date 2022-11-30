@@ -42,4 +42,24 @@ export class BillTableComponent implements OnInit, OnChanges {
    }   
   }
 
+  onDelete(event){
+    
+    this.billDataService.deleteBillData(event._id).subscribe(res=>{
+      console.log(res);
+      this.data.forEach((row,index) => {
+     
+        
+        if(row._id==event._id){
+          console.log("found");
+          
+          this.data.splice(index,1);
+        }
+        
+      });
+      console.log("data",this.data);
+      
+      
+    })
+  }
+
 }

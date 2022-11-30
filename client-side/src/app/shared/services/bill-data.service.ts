@@ -31,4 +31,11 @@ export class BillDataService {
     };
     return this.httpClient.post<any>(url, body);
   }
+
+  public deleteBillData(id: string): Observable<any> {
+    const url = this.apiURL + 'bill';
+    let queryParam = new HttpParams();
+    queryParam = queryParam.append("id",id);
+    return this.httpClient.delete<any>(url,{params:queryParam});
+  }
 }
