@@ -1,7 +1,9 @@
 const router = require("express").Router();
 const { User, validate } = require("../models/user");
+const Expense = require("../models/expense")
 const bcrypt = require("bcrypt");
 
+//Create User(Register)
 router.post("/", async (req, res) => {
   try {
     const { error } = validate(req.body);
@@ -23,6 +25,17 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Get User Details
+router.get("/", async (req, res) => {
+  try {
+    res.status(200).send(await User.find({ email: req.query.email }))
+  } catch (error) {
+    res.status(500).send({ message: error });
+  }
+});
+
+
+//Edit User Details
 router.put("/:id", async (req, res) => {
   if (req.body.password) {
     const salt = await bcrypt.genSalt(Number(process.env.SALT));
@@ -42,12 +55,15 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+//Delete User
+router.delete("/", async (req, res) => {
   try {
-    res.status(200).send(await User.find({ email: req.query.email }))
-  } catch (error) {
-    res.status(500).send({ message: error });
+    const user = await User.findByIdAndDelete({_id: req.query.id });
+    res.send(200).send({user: user, messsage: "User Deleted Successfully"})
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
+
 
 module.exports = router;

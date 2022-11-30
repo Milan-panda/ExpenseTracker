@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Bill = require("../models/bills");
 
+//Add Bill
 router.post("/", async (req, res) => {
   const newBill = new Bill(req.body);
   try {
@@ -11,6 +12,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+//Get Bills
 router.get("/", async (req, res) =>{
   try {
     const bills = await Bill.find({ email: req.query.email });
@@ -19,5 +21,33 @@ router.get("/", async (req, res) =>{
     res.status(500).send({message: "Internal Server Error"})
   }
 })
+
+//Edit Bill Details
+router.put("/:id", async (req, res) => {
+  try {
+    const updatedBill = await Bill.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedBill);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//Delete Bills
+router.delete("/", async (req, res)=>{
+ 
+  try {
+    const bill = await Bill.findByIdAndDelete({_id:req.query.id});
+    res.status(200).send({message: "deleted"});
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
+)
 
 module.exports = router;
