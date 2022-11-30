@@ -1,43 +1,37 @@
 <div class="container mt-3">
-  <div class="add-expense-modal">
-    <app-add-bill></app-add-bill>
+  <h3 *ngIf="recentBill">Recently Added Bill</h3>
+  <div class="add-expense-modal" *ngIf="!recentBill">
+    <app-add-bill (myOutput) ="getUpdatedData($event)"></app-add-bill>
   </div>
   <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">Date</th>
+        <th scope="col">Due Date</th>
         <th scope="col">Category</th>
-        <th scope="col">Payment Mode</th>
         <th scope="col">Description</th>
-        <th scope="col">Expense Type</th>
         <th scope="col">Amount</th>
         <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td *ngFor="let row of showData">
-          {{ row.date }}
+      <tr *ngFor="let row of (recentBill? data.slice(-5).reverse() : data | paginate: { itemsPerPage: 10, currentPage: p })">
+        <td>
+          {{ row.dueDate }}
         </td>
         <td>
           {{ row.category }}
         </td>
         <td>
-          {{ row.paymentMode }}
-        </td>
-        <td>
           {{ row.description }}
-        </td>
-        <td>
-          {{ row.expenseType }}
         </td>
         <td>
           {{ row.amount }}
         </td>
-        <td>
-          <button class="editButton" (click)="onDelete(row)"><i class="bi bi-trash3-fill"></i></button>
+        <td *ngIf="!recentBill">
+          <button class="editButton"><i class="bi bi-trash3-fill"></i></button>
         </td>
       </tr>
     </tbody>
+    <pagination-controls *ngIf="!recentBill" (pageChange)="p = $event"></pagination-controls>
   </table>
 </div>

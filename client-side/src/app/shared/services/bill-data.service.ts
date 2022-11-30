@@ -20,8 +20,10 @@ export class BillDataService {
 
   public addBillData(addBill: BillModel): Observable<any> {
     const url = this.apiURL + 'bill';
+    console.log("in service",addBill);
+    
     let body = {
-      date: addBill.date,
+      dueDate: addBill.dueDate,
       category: addBill.category,
       description: addBill.description,
       amount: addBill.amount,

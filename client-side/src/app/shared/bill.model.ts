@@ -1,5 +1,5 @@
 export class BillModel {
-  date: Date = null;
+  dueDate: Date = null;
   category: string = null;
   description: string = null;
   amount:number=null;
