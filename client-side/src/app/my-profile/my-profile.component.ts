@@ -18,10 +18,7 @@ export class MyProfileComponent implements OnInit {
 
    ngOnInit(){
   
-    this.usersService.getUserData().subscribe( res=>{
-      console.log(res);
-       this.data=res[0];
-    });
+
     
     
   }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,8 +10,10 @@ export class UsersService {
 
   constructor(private httpClient: HttpClient,) { }
 
-  public getUserData(): Observable<any> {
-    const url = this.apiURL + "users?email=aditya@gmail.com";
-    return this.httpClient.get<any>(url);
+  public getUserData(email:string): Observable<any> {
+    const url = this.apiURL + "users";
+    let queryParam = new HttpParams();
+    queryParam = queryParam.append('email', email);
+    return this.httpClient.get<any>(url,{params:queryParam});
 }
 }

@@ -21,9 +21,7 @@ export class ExpenseTableComponent implements OnInit,OnChanges {
     this.expenseDataService.getTableData(this.email).subscribe((res) => {      
       if(res){
         for(let key in res){
-          console.log("data",res[key]);
           res[key].date = new Date(res[key].date).getDate().toString()+"/"+new Date(res[key].date).getMonth().toString() +"/"+ new Date(res[key].date).getFullYear().toString();
-          console.log(new Date(res[key].date));;
           
         }
         this.data=res;

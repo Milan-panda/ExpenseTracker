@@ -2,9 +2,9 @@
     <app-expense-chart></app-expense-chart>
   </div>
   <div class="container d-flex justify-content-between m-auto flex-wrap card-data-component">
-    <app-card-data></app-card-data>
-    <app-card-data></app-card-data>
-    <app-card-data></app-card-data>
-    <app-card-data></app-card-data>
+    <app-card-data [data]="montlyIncome"></app-card-data>
+    <app-card-data [data]="expense"></app-card-data>
+    <app-card-data [data]="balance"></app-card-data>
+    <app-card-data [data]="transactions"></app-card-data>
     <app-expense-table [recentTransaction]=true></app-expense-table>
 </div>

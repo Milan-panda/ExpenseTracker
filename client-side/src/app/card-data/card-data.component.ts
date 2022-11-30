@@ -1,27 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ExpenseDataService } from '../shared/services/expense-data.service';
+import { UsersService } from '../shared/services/users.service';
 
 @Component({
   selector: 'app-card-data',
   templateUrl: './card-data.component.html',
   styleUrls: ['./card-data.component.css']
 })
-export class CardDataComponent implements OnInit {
+export class CardDataComponent implements OnInit,OnChanges {
 
-  constructor(private expenseDataService:ExpenseDataService) { }
+  @Input() data:any[]=null;
 
-  montlyIncome:number=0;
-  expense:number=0;
-  balance:number=0;
-  transactions:number=0;
+  constructor(private expenseDataService:ExpenseDataService, private userDataService:UsersService) { }
+
 
   ngOnInit(): void {
-
-
-    this.expenseDataService.getMonthlyData((new Date().getMonth()+1).toString(), JSON.parse(localStorage.getItem('userData')).email).subscribe(res=>{
-      console.log("card data",res);
+ 
+    console.log("onint",this.data);
+    
+    // console.log(this.data.split(" "));
+    
+    
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+      console.log("hieee",this.data);
       
-    })
   }
 
 
