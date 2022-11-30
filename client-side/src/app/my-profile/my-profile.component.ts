@@ -1,44 +1,57 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
 import { UsersService } from '../shared/services/users.service';
 import { UserInfoModel } from '../shared/user.model';
 
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
-  styleUrls: ['./my-profile.component.css']
+  styleUrls: ['./my-profile.component.css'],
 })
 export class MyProfileComponent implements OnInit {
   userInfo: UserInfoModel;
-  @ViewChild('f') signupForm:NgForm;
-  data:any;
+  signupForm:FormGroup;
+  data;
+  isDataAvailable = false;
 
-  constructor(private usersService:UsersService){
-  }
+  constructor(private usersService: UsersService) {}
 
-   ngOnInit(){
+  ngOnInit() {
+    // initiate execution
+    
+      // Executer fn...
+      this.fetchData();
+
   
-
-    
-    
   }
 
-  onSubmit(){
-
-    // this.userInfo = new UserInfoModel();
-    // this.userInfo.firstName = this.signupForm.value.firstName;
-    // this.userInfo.lastName = this.signupForm.value.lastName;
-    // this.userInfo.email = this.signupForm.value.email;
-    // this.userInfo.currency = this.signupForm.value.currency;
-    // this.userInfo.income = this.signupForm.value.income;
-    // this.userInfo.password = this.signupForm.value.password;
+  fetchData() {
+    return new Promise((resolve)=>{
+      resolve(this.usersService.getUserData(JSON.parse(localStorage.getItem('userData')).email).subscribe((res) => {
+        console.log('ressss', res);
+        this.data = res[0];
+        console.log("data",this.data);
+        
+        this.isDataAvailable=true;
+      }));
+    });
+  }
+  onSubmit() {
+    console.log("form data",this.data);
+    
+    this.usersService.updateUserData(this.data).subscribe(res=>{
+      console.log("response after submit",res);
+      
+    })
 
     console.log();
-    
-    
   }
-  
-  submitted(){
+  onDelete(){
+    if(confirm("Are you sure to delete your profile")) {
+      console.log("happy");
+      
+    }
+  }
 
-}
+  submitted() {}
 }
