@@ -8,6 +8,7 @@ const authRoutes = require("./routes/auth");
 const expenseRoute = require("./routes/expenses");
 const monthlyDataRoutes = require("./routes/monthlyData")
 const yearlyDataRoutes = require("./routes/yearlyData")
+const billRoute = require("./routes/bills");  
 
 //database connection
 connection();
@@ -27,6 +28,7 @@ app.use("/expense", expenseRoute);
 app.use("/monthlyData", monthlyDataRoutes)
 app.use("/yearlyData", yearlyDataRoutes)
 
+app.use("/bill", billRoute);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}`));
