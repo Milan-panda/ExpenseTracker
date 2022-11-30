@@ -1,102 +1,29 @@
-<div class="container mt-5">
-  <div class="row" *ngIf="data">
-    
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form (ngSubmit)="onSubmit()" #f="ngForm">
-        <div class="form-group mb-3">
-          <label for="username">Employee Name</label>
-          <input
-            type="text"
-            id="username"
-            class="form-control"
-            ngModel
-            name="username"
-            required
-            [placeholder]="data.firstName"
-            value="hi"
-            #username="ngModel"
-          />
-        </div>
-        <div class="form-group mb-3">
-          <label for="email">Employee Mail</label>
-          <input
-            type="email"
-            id="email"
-            class="form-control"
-            ngModel
-            name="email"
-            required
-            email
-            #email="ngModel"
-          />
-        </div>
-        <div class="alert alert-danger" *ngIf="!email.valid && email.touched"
-          >Please enter valid email</div>
-
-        <div class="form-group mb-3">
-          <label for="number">Employee Phone Number</label>
-          <input
-            type="text"
-            id="number"
-            class="form-control"
-            ngModel
-            name="number"
-            required
-            #number="ngModel"
-            minlength=10
-            maxlength=10
-          />
-        </div>
-
-        <div class="alert alert-danger" *ngIf="number.errors?.['minlength']">
-          Mobile number should be of 10 digit.
-        </div>
-
-        <div class="form-group mb-3">
-          <label for="address">Employee Adress</label>
-          <input
-            type="text"
-            id="address"
-            class="form-control"
-            ngModel
-            name="address"
-            required
-            #address="ngModel"
-          />
-        </div>
-
-        <div class="form-group mb-3">
-          <label for="date">Employee DOB</label>
-          <input
-            type="date"
-            id="date"
-            class="form-control"
-            ngModel
-            name="date"
-            required
-            #date="ngModel"
-          />
-        </div>
-        <div
-          class="alert alert-danger help-block"
-          *ngIf="!f.valid && f.touched"
-        >
-          Please enter all data
-        </div>
-
-        <div
-          class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 mt-5"
-        >
-          <button
-            class="btn btn-success me-5"
-            type="submit"
-            [disabled]="!f.valid"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+<div  *ngIf="isDataAvailable" class="col-xs-12 col-md-6 col-md-offset-3">
+    <div class="mb-3">
+      <label for="firstName" class="form-label" >First Name</label>
+      <input type="firstName" class="form-control" id="firstName" name="firstName" [(ngModel)]="data.firstName" >
     </div>
-  </div>
-  
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="data.lastName"  >
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="text" class="form-control" id="email" name="email" [(ngModel)]="data.email" disabled >
+    </div>
+    <div class="mb-3">
+      <label for="currency" class="form-label">Currency</label>
+      <select id="currency" class="form-select" [(ngModel)]="data.currency">
+        <option value="rupee">INR | ₹</option>
+        <option value="dollar">USD | $</option>
+        <option value="euro">EUR | €</option>
+        <option value="dinar">AED | د.إ</option>
+        <option value="pound">GBP | £</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="income" class="form-label">Income</label>
+      <input type="text" class="form-control" id="income" name="income" [(ngModel)]="data.income"  >
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
 </div>
