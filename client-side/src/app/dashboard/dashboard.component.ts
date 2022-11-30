@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ExpenseDataService } from '../shared/services/expense-data.service';
 import { UsersService } from '../shared/services/users.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +15,8 @@ export class DashboardComponent implements OnInit {
   balance=[];
   transactions=[];
   tempBalance:number=0;
+  showAlert:boolean=false;
+  notifications=[];
 
   constructor(private expenseDataService:ExpenseDataService, private userDataService:UsersService) { }
 
@@ -22,7 +25,10 @@ export class DashboardComponent implements OnInit {
       console.log("user data",res);
       this.montlyIncome.push(res[0].income);
       this.montlyIncome.push("Income");
-      
+
+      setTimeout(() => {
+        this.onExpenseAlert();
+      }, 10000);
     })
 
     this.expenseDataService.getMonthlyData((new Date().getMonth()+1).toString(), JSON.parse(localStorage.getItem('userData')).email).subscribe(res=>{
@@ -41,5 +47,33 @@ export class DashboardComponent implements OnInit {
       
     })
      }
+
+
+     onBillsAlert(){
+      Swal.fire({
+        icon: 'warning',
+         title: 'Reminder',
+         text: "Please enter today's expenses",
+         timer:10000,
+       })
+    }
+
+    onExpenseAlert() {
+
+      Swal.fire({
+        title: 'Reminder',
+        text: "Please enter today's expenses",
+        icon: 'warning',
+        confirmButtonText: 'Okay',
+        timer:5000
+      }).then((result) => {
+        console.log(result);
+        if (!result.isConfirmed) {
+          this.notifications.push("Reminder: Add Expense");
+          this.expenseDataService.notifications=this.notifications;
+          console.log("dash noti",this.notifications);
+        }
+      })
+    }
 
 }

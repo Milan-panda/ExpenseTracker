@@ -8,6 +8,7 @@ import { ExpenseModel } from '../expense.model';
 })
 export class ExpenseDataService {
   apiURL: string = 'http://localhost:8080/';
+  notifications;
 
   constructor(private httpClient: HttpClient) {}
 
