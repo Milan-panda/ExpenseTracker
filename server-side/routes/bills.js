@@ -23,10 +23,10 @@ router.get("/", async (req, res) =>{
 })
 
 //Edit Bill Details
-router.put("/:id", async (req, res) => {
+router.put("/", async (req, res) => {
   try {
     const updatedBill = await Bill.findByIdAndUpdate(
-      req.params.id,
+      {_id:req.query.id},
       {
         $set: req.body,
       },

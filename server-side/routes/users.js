@@ -36,14 +36,14 @@ router.get("/", async (req, res) => {
 
 
 //Edit User Details
-router.put("/:id", async (req, res) => {
+router.put("/", async (req, res) => {
   if (req.body.password) {
     const salt = await bcrypt.genSalt(Number(process.env.SALT));
     req.body.password = await bcrypt.hash(req.body.password, salt);
   }
   try {
     const updateUser = await User.findByIdAndUpdate(
-      req.params.id,
+      {_id:req.query.id},
       {
         $set: req.body,
       },
