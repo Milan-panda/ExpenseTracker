@@ -7,11 +7,13 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuard } from './auth/auth.guard';
+import { BillTableComponent } from './bill-table/bill-table.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard',component:DashboardComponent, canActivate:[AuthGuard]},
   {path:'all-expense',component:ExpenseTableComponent, canActivate:[AuthGuard]},
+  {path:'all-bills',component:BillTableComponent, canActivate:[AuthGuard]},
   {path:'my-profile',component:MyProfileComponent, canActivate:[AuthGuard]},
   {path:'register',component:RegisterComponent},
   {path:'login',component:LoginComponent},

@@ -50,7 +50,6 @@ export class AddExpenseComponent implements OnInit {
           console.log("data",res[key]);
           res[key].date = new Date(res[key].date).getDate().toString()+"/"+new Date(res[key].date).getMonth().toString() +"/"+ new Date(res[key].date).getFullYear().toString();          
         }
-        res;
 
       }
       

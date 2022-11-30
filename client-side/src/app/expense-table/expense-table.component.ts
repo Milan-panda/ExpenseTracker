@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ExpenseDataService } from '../shared/services/expense-data.service';
 
 @Component({
@@ -21,7 +21,9 @@ export class ExpenseTableComponent implements OnInit,OnChanges {
     this.expenseDataService.getTableData(this.email).subscribe((res) => {      
       if(res){
         for(let key in res){
-          res[key].date = new Date(res[key].date).getDate().toString()+"/"+new Date(res[key].date).getMonth().toString() +"/"+ new Date(res[key].date).getFullYear().toString();
+          console.log("data",res[key]);
+          res[key].date = new Date(res[key].date).getDate().toString()+"/"+(new Date(res[key].date).getMonth()+1).toString() +"/"+ new Date(res[key].date).getFullYear().toString();
+          console.log(new Date(res[key].date));
           
         }
         this.data=res;
@@ -63,7 +65,7 @@ export class ExpenseTableComponent implements OnInit,OnChanges {
 
   getUpdatedData(data){
     console.log("compo",data);
-    data.date = new Date(data.date).getDate().toString()+"/"+new Date(data.date).getMonth().toString() +"/"+ new Date(data.date).getFullYear().toString();
+    data.date = new Date(data.date).getDate().toString()+"/"+(new Date(data.date).getMonth()+1).toString() +"/"+ new Date(data.date).getFullYear().toString();
 
    if(!this.firstTime){
     this.data.push(data);
