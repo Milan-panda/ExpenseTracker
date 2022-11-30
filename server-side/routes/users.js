@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { User, validate } = require("../models/user");
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
 
 router.post("/", async (req, res) => {
   try {
@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
     await new User ({...req.body, password: hashPassword}).save();
     res.status(201).send({message: "User Created Successfully"})
   } catch (error) {
-    res.status(500).send({message: "Internal Server Error"});
+    res.status(500).send({ message: "Internal Server Error" });
   }
 });
 
