@@ -1,7 +1,9 @@
 const router = require("express").Router();
 const { User, validate } = require("../models/user");
+const Expense = require("../models/expense")
 const bcrypt = require("bcrypt");
 
+//Create User(Register)
 router.post("/", async (req, res) => {
   try {
     const { error } = validate(req.body);
@@ -23,30 +25,45 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res)=>{
-    if (req.body.password) {
-      const salt = await bcrypt.genSalt(Number(process.env.SALT));
-      req.body.password = await bcrypt.hash(req.body.password, salt);
-    }
-    try {
-      const updateUser = await User.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      res.status(200).json(updateUser);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-  router.get("/", async (req, res) => {
-    try {
+// Get User Details
+router.get("/", async (req, res) => {
+  try {
     res.status(200).send(await User.find({ email: req.query.email }))
   } catch (error) {
     res.status(500).send({ message: error });
   }
 });
+
+
+//Edit User Details
+router.put("/", async (req, res) => {
+  if (req.body.password) {
+    const salt = await bcrypt.genSalt(Number(process.env.SALT));
+    req.body.password = await bcrypt.hash(req.body.password, salt);
+  }
+  try {
+    const updateUser = await User.findByIdAndUpdate(
+      {_id:req.query.id},
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.status(200).json(updateUser);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//Delete User
+router.delete("/", async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete({_id: req.query.id });
+    res.send(200).send({user: user, messsage: "User Deleted Successfully"})
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 module.exports = router;
