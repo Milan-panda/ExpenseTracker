@@ -1,0 +1,98 @@
+<!-- Button trigger modal -->
+<button
+  type="button"
+  class="btn btn-primary p-3 add-expense-button m-2 d-flex align-items-center ms-auto"
+  data-bs-toggle="modal"
+  data-bs-target="#addBill"
+>
+  <img src="../../assets/plus.png" height="23px" class="me-2" />
+  Add Bill
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="addBill"
+  tabindex="-1"
+  aria-labelledby="addBillLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="addBillLabel">Add Bills</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addBillForm" (ngSubmit)="onSubmit()">
+          <div class="form-group mb-3">
+            <label for="date">Due Date </label>
+            <input
+              type="date"
+              id="date"
+              formControlName="date"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="category">Category </label>
+            <select class="form-select" id="category" formControlName="category">
+              <option value="select" selected>Select category</option>
+              <option value="mobilePayment">Mobile Payment</option>
+              <option value="electricity">Electricity</option>
+              <option value="waterBill">Water Bill</option>
+              <option value="wifiBill">Wifi Bill</option>
+              <option value="others">Others</option>
+            </select>
+          </div>
+          <div class="form-group mb-3">
+            <label for="desc">Description </label>
+            <input
+              type="text"
+              id="desc"
+              formControlName="desc"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="amount">Amount </label>
+            <input
+              type="number"
+              id="amount"
+              formControlName="amount"
+              class="form-control"
+            />
+          </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="addBillForm.invalid && addBillForm.touched"
+          >
+            Please enter all data correctly!
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              class="btn btn-success"
+              type="submit"
+              [disabled]="submitted()"
+              data-bs-dismiss = "modal"
+            >
+              Add Expense
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const billSchema = new mongoose.Schema({
   dueDate: {
     type: Date,
-    default: Date.now,
+    required: true,
+
   },
   category: {
     type: String,

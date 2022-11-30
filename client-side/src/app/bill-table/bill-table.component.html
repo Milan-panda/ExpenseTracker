@@ -1,0 +1,37 @@
+<div class="container mt-3">
+  <h3 *ngIf="recentBill">Recently Added Bill</h3>
+  <div class="add-expense-modal" *ngIf="!recentBill">
+    <app-add-bill (myOutput) ="getUpdatedData($event)"></app-add-bill>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Category</th>
+        <th scope="col">Description</th>
+        <th scope="col">Amount</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of (recentBill? data.slice(-5).reverse() : data.reverse() | paginate: { itemsPerPage: 10, currentPage: p })">
+        <td>
+          {{ row.dueDate }}
+        </td>
+        <td>
+          {{ row.category }}
+        </td>
+        <td>
+          {{ row.description }}
+        </td>
+        <td>
+          {{ row.amount }}
+        </td>
+        <td *ngIf="!recentBill">
+          <button class="editButton"><i class="bi bi-trash3-fill"></i></button>
+        </td>
+      </tr>
+    </tbody>
+    <pagination-controls *ngIf="!recentBill" (pageChange)="p = $event"></pagination-controls>
+  </table>
+</div>
