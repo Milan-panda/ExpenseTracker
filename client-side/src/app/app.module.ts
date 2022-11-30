@@ -19,6 +19,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AddExpenseComponent } from './add-expense/add-expense.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AddBillComponent } from './add-bill/add-bill.component';
+import { BillTableComponent } from './bill-table/bill-table.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     LoginComponent,
     RegisterComponent,
     LoadingSpinnerComponent,
-    AddExpenseComponent
+    AddExpenseComponent,
+    AddBillComponent,
+    BillTableComponent
   ],
   imports: [
     BrowserModule,
