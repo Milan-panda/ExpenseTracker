@@ -29,6 +29,49 @@ export class PieChartExpenseComponent implements OnInit {
   others = 0;
 
   constructor(private service: ExpenseDataService) {
+     
+    this.chartOptions = {
+      series: [this.foodDrinks, this.shopping, this.grocery, this.transporation, this.others],
+     chart: {
+        type: "pie"
+      },
+      
+      labels: ["Food & Drinks", "Shopping", "Groceries", "Transportation", "Others"],
+      responsive: [
+        {
+          breakpoint: 3400,
+          options: {
+            chart: {
+              width: 600
+            },
+            legend: {
+              position: "right",
+              fontSize:"20px"
+            }
+          }
+        },
+        {
+          breakpoint: 800,
+          options: {
+            chart: {
+              width: 500
+            },
+            legend: {
+              position: "bottom",
+              fontSize:"20px"
+            }
+          }
+        },
+        {
+          breakpoint: 600,
+          options: {
+            chart: {
+              width: 400
+            }
+          }
+        }
+      ]
+    };
     this.service.getMonthlyData('11', "aditya@gmail.com").subscribe({next: (data) => { // change the email argument according to current logged in user
       data.forEach(item => {
         if(item.category == "others"){

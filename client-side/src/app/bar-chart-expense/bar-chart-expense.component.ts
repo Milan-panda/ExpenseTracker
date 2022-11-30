@@ -41,6 +41,70 @@ export class BarChartExpenseComponent implements OnInit {
 income = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 expenses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   constructor(private service: ExpenseDataService) {
+    this.chartOptions = {
+      series: [
+        {
+          name: "Income",
+          data: this.income
+        },
+        {
+          name: "Expenditure",
+          data: this.expenses
+        },
+        
+      ],
+      chart: {
+        type: "bar",
+        height: 350,
+        width:600,
+    
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "55%",
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        show: true,
+        width: 2,
+        colors: ["transparent"]
+      },
+      xaxis: {
+        categories: [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
+        ]
+      },
+      yaxis: {
+        title: {
+          text: "$ (thousands)"
+        }
+      },
+      fill: {
+        opacity: 1
+      },
+      tooltip: {
+        y: {
+          formatter: function(val) {
+            return "$ " + val + " thousands";
+          }
+        }
+      }
+    };
       this.service.getYearlyData("2022", "aditya@gmail.com").subscribe({next: (data)=>{ // change the email argument according to current logged in user
         data.forEach(item => {
           const monthIndex = parseInt(item.date.substring(5, 7));
