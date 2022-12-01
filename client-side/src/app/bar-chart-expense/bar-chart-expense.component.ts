@@ -105,7 +105,7 @@ expenses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         }
       }
     };
-      this.service.getYearlyData("2022", "aditya@gmail.com").subscribe({next: (data)=>{ // change the email argument according to current logged in user
+      this.service.getYearlyData((new Date().getFullYear()).toString(),JSON.parse(localStorage.getItem('userData')).email).subscribe({next: (data)=>{ // change the email argument according to current logged in user
         data.forEach(item => {
           const monthIndex = parseInt(item.date.substring(5, 7));
           if(item.expenseType === "expense"){

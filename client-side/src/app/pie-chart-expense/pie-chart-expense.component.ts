@@ -71,7 +71,7 @@ export class PieChartExpenseComponent implements OnInit {
         }
       ]
     };
-    this.service.getMonthlyData('11', "aditya@gmail.com").subscribe({next: (data) => { // change the email argument according to current logged in user
+    this.service.getMonthlyData((new Date().getMonth()+1).toString(),JSON.parse(localStorage.getItem('userData')).email).subscribe({next: (data) => { // change the email argument according to current logged in user
       data.forEach(item => {
         if(item.expenseType=="expense"){
           if(item.category == "others"){

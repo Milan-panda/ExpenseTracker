@@ -41,7 +41,6 @@ export class AuthService {
       lastName: userInfo.lastName,
       email: userInfo.email,
       currency: userInfo.currency,
-      income: userInfo.income,
       password: userInfo.password,
     };
     return this.httpClient.post<any>(url, body).pipe(tap());

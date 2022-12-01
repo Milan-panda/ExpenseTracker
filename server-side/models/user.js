@@ -13,7 +13,6 @@ const userSchema = new mongoose.Schema({
     enum: ["rupee", "dollar", "euro", "pound", "dinar"],
     required: true,
   },
-  income: { type: Number, required: true },
 });
 
 userSchema.methods.generateAuthToken = function () {
@@ -32,7 +31,6 @@ const validate = (data) => {
     email: Joi.string().email().required().label("Email"),
     password: passwordComplexity().required().label("Password"),
     currency: Joi.string().required().label("Currency"),
-    income: Joi.number().required().label("Income"),
   });
   return schema.validate(data);
 };
