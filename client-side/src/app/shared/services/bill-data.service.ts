@@ -38,4 +38,15 @@ export class BillDataService {
     queryParam = queryParam.append("id",id);
     return this.httpClient.delete<any>(url,{params:queryParam});
   }
+
+  // public updateBillData(event: any): Observable<any> {
+  //   const url = this.apiURL + 'bill';
+  //   let queryParam = new HttpParams();
+  //   queryParam = queryParam.append("id",event._id);
+  //   const body={
+  //     paid:!event.paid
+  //   }
+  //   console.log("bodydyyy",body);
+  //   return this.httpClient.put<any>(url,body,{params:queryParam});
+  // }
 }

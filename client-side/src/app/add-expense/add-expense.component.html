@@ -41,19 +41,28 @@
           </div>
           <div class="form-group mb-3">
             <label for="expenseType">Expense type </label>
-            <select class="form-select" id="expenseType" formControlName="expenseType">
+            <select class="form-select" id="expenseType" formControlName="expenseType" [(ngModel)]="showExpense">
               <option value="expense" selected>Expense</option>
               <option value="income">Income</option>
             </select>
           </div>
-          <div class="form-group mb-3">
+          <div class="form-group mb-3" *ngIf="showExpense=='expense'">
             <label for="category">Category </label>
-            <select class="form-select" id="category" formControlName="category">
+            <select class="form-select" id="category" formControlName="category" >
               <option value="select" selected>Select category</option>
               <option value="food&drinks">Food & Drinks</option>
               <option value="shopping">Shopping</option>
               <option value="grocery">Grocery</option>
               <option value="transportation">Transportation</option>
+              <option value="others">Others</option>
+            </select>
+          </div>
+          <div class="form-group mb-3" *ngIf="showExpense=='income'">
+            <label for="category">Category </label>
+            <select class="form-select" id="category" formControlName="category" >
+              <option value="salary">Salary</option>
+              <option value="sideBusiness">Side Business</option>
+              <option value="investmentReturn">Investment Return</option>
               <option value="others">Others</option>
             </select>
           </div>

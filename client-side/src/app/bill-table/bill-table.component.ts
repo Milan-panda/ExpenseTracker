@@ -13,7 +13,7 @@ export class BillTableComponent implements OnInit, OnChanges {
   data=[];
   showData=[];
   firstTime:boolean=true;
-  
+
   email=JSON.parse(localStorage.getItem('userData')).email;
   p:number=1;
 
@@ -23,7 +23,6 @@ export class BillTableComponent implements OnInit, OnChanges {
         for(let key in res){
           console.log("data", res[key]);
           res[key].dueDate = new Date(res[key].dueDate).getDate().toString()+"/"+(new Date(res[key].dueDate).getMonth()+1).toString() +"/"+ new Date(res[key].dueDate).getFullYear().toString();
-          console.log(new Date(res[key].dueDate));
           
         }
         this.data=res;
@@ -42,6 +41,14 @@ export class BillTableComponent implements OnInit, OnChanges {
     this.data.push(data);
    }   
   }
+
+  // onPaid(event){
+  //   console.log("clicked",event);
+  //   this.billDataService.updateBillData(event).subscribe(res=>{
+  //     console.log("after paid",res);
+  //     this.isPaid=true;
+  //   });
+  // }
 
   onDelete(event){
     
