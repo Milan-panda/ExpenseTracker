@@ -10,6 +10,7 @@ export class ExpenseDataService {
   apiURL: string = 'http://localhost:8080/';
   notifications;
 
+  showedNotification=false;
   constructor(private httpClient: HttpClient) {}
 
   public getTableData(email: string): Observable<any> {

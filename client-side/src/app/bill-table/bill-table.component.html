@@ -28,7 +28,7 @@
           {{ row.amount }}
         </td>
         <td *ngIf="!recentBill">
-          <button class="editButton"><i class="bi bi-trash3-fill"></i></button>
+          <button class="editButton" (click)="onDelete(row)"><i class="bi bi-trash3-fill"></i></button>
         </td>
       </tr>
     </tbody>
