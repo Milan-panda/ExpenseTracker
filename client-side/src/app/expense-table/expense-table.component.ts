@@ -1,5 +1,8 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ExpenseDataService } from '../shared/services/expense-data.service';
+
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-expense-table',
@@ -7,9 +10,12 @@ import { ExpenseDataService } from '../shared/services/expense-data.service';
   styleUrls: ['./expense-table.component.css']
 })
 export class ExpenseTableComponent implements OnInit,OnChanges {
-  constructor(private expenseDataService :ExpenseDataService) {}
   @Input() recentTransaction:boolean;
   p:number=1
+  @ViewChild("table") table;
+
+  isFormValid: boolean = true;
+  constructor(private expenseDataService :ExpenseDataService, private modalService: NgbModal) {}
   data = [];
   showData = [];
   firstTime:boolean=true;
@@ -89,5 +95,24 @@ export class ExpenseTableComponent implements OnInit,OnChanges {
       
       
     })
+  
+  }
+
+  open(content) {
+		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+	}
+
+  submitPdfForm(form: NgForm){
+    const preference = form.value.preference;
+    if(preference === ""){
+      this.isFormValid = false;
+    }else{
+      this.expenseDataService.pdfDownload(preference);
+      this.modalService.dismissAll()
+    }   
+  }
+  onPdfDownloadModal(content){
+    this.isFormValid = true;
+    this.open(content)
   }
 }

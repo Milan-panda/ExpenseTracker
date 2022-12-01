@@ -3,7 +3,40 @@
   <div class="add-expense-modal" *ngIf="!recentTransaction">
     <app-add-expense (myOutput) ="getUpdatedData($event)"></app-add-expense>
   </div>
-  <table class="table table-hover">
+  <button class="btn btn-primary" (click)="onPdfDownloadModal(content)" *ngIf="!recentTransaction">Download PDF</button>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Download Transactions</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-warning" role="alert"  [hidden]="isFormValid">
+        Please select your preference!
+      </div>
+      <form #pdfForm="ngForm" (submit)="submitPdfForm(pdfForm)" novalidate>
+        <div class="mb-3">
+          <label class="mb-2">Select your preference:</label>
+          <div class="input-group d-block">
+            <div>
+              <input type="radio" id="monthly" name="preference" value="Monthly" class="radio-button"  ngModel required>
+              <label for="monthly" class="mx-1">Monthly</label>
+            </div>
+            <div>
+              <input type="radio" name="preference" id="yearly" value="Yearly" class="radio-button" ngModel required>
+              <label for="yearly" class="mx-1">Yearly</label>
+
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-dark" >Save</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+  <hr />
+  
+  <table class="table table-hover" #table>
     <thead>
       <tr>
         <th scope="col">Date</th>
