@@ -7,7 +7,6 @@ const expenseSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    enum: ["food&drinks", "shopping", "transportation", "grocery", "others"],
     required: true,
   },
   paymentMode: {

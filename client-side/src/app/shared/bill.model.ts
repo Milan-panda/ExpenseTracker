@@ -4,4 +4,5 @@ export class BillModel {
   description: string = null;
   amount:number=null;
   email:string=null;
+  paid:boolean=false;
 }

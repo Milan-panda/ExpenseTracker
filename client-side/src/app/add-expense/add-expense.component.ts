@@ -14,7 +14,7 @@ export class AddExpenseComponent implements OnInit {
   expense: ExpenseModel
   addExpenseForm:FormGroup;
   @Output() myOutput:EventEmitter<any[]>= new EventEmitter();  
-
+  showExpense:string;
   constructor(private expenseDataService:ExpenseDataService, private router: Router) { }
 
   ngOnInit() {
@@ -26,7 +26,10 @@ export class AddExpenseComponent implements OnInit {
       'desc': new FormControl(null, [Validators.required]),
       'amount': new FormControl(null, [Validators.required]),
       'paymentMode': new FormControl("cash", [Validators.required])
+
     })
+
+    
   }
 
   onSubmit(){

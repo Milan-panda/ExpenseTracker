@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ExpenseDataService } from '../shared/services/expense-data.service';
-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
@@ -95,7 +94,6 @@ export class ExpenseTableComponent implements OnInit,OnChanges {
       
       
     })
-  
   }
 
   open(content) {

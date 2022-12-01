@@ -3,6 +3,5 @@ export class UserInfoModel {
     lastName: string = null;
     email: string = null;
     currency: string = null;
-    income:number=null;
     password:string=null;
   }

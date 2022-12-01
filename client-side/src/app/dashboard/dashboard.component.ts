@@ -18,14 +18,16 @@ export class DashboardComponent implements OnInit {
   tempBalance:number=0;
   showAlert:boolean=false;
   notifications=[];
+  tempExpense:number=0;
+  tempIncome:number=0;
 
   constructor(private expenseDataService:ExpenseDataService, private userDataService:UsersService, private billDataService:BillDataService) { }
 
   ngOnInit(): void {
-    this.userDataService.getUserData(JSON.parse(localStorage.getItem('userData')).email).subscribe(res=>{
-      console.log("user data",res);
-      this.montlyIncome.push(res[0].income);
-      this.montlyIncome.push("Income");
+    // this.userDataService.getUserData(JSON.parse(localStorage.getItem('userData')).email).subscribe(res=>{
+    //   console.log("user data",res);
+    //   this.montlyIncome.push(res[0].income);
+    //   this.montlyIncome.push("Income");
       
       if(!this.expenseDataService.showedNotification){
         setTimeout(() => {
@@ -64,7 +66,7 @@ export class DashboardComponent implements OnInit {
         // console.log(new Date()-res[0].date);
         
       })
-    })
+    // })
 
     this.expenseDataService.getMonthlyData((new Date().getMonth()+1).toString(), JSON.parse(localStorage.getItem('userData')).email).subscribe(res=>{
       console.log("card data",res);
@@ -72,13 +74,18 @@ export class DashboardComponent implements OnInit {
       this.transactions[1]="Transactions";
       for (const key in res) {
         if(res[key].expenseType=='expense'){
-            this.tempBalance+=res[key].amount;          
+            this.tempExpense+=res[key].amount;          
         }
+        if(res[key].expenseType=='income'){
+          this.tempIncome+=res[key].amount;          
       }
-      this.expense[0]=this.tempBalance;
-      this.expense[1]="Expense";
-      this.balance[0]= this.montlyIncome[0]-this.expense[0];
-      this.balance[1]="Balance";
+      }
+      this.montlyIncome.push(this.tempIncome);
+      this.montlyIncome.push("Income");
+      this.expense.push(this.tempExpense);
+      this.expense.push("Expense");
+      this.balance.push(this.montlyIncome[0]-this.expense[0]);
+      this.balance.push("Balance");
       
     })
      }

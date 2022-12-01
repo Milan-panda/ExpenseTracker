@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   ApexAxisChartSeries,
@@ -13,6 +14,7 @@ import {
   ApexTooltip
 } from "ng-apexcharts";
 import { ExpenseDataService } from '../shared/services/expense-data.service';
+import { UsersService } from '../shared/services/users.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -40,7 +42,27 @@ export class BarChartExpenseComponent implements OnInit {
   
 income = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 expenses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  constructor(private service: ExpenseDataService) {
+  constructor(private service: ExpenseDataService, private usersService: UsersService) {
+    let currency;
+    this.usersService.getUserData(JSON.parse(localStorage.getItem('userData')).email).subscribe(res=>{
+      if(res[0].currency=='dollar'){
+        currency='$'
+      }
+      else if(res[0].currency=='rupee'){
+        currency='₹'
+      }
+      else if(res[0].currency=='euro'){
+        currency='€'
+      }
+      else if(res[0].currency=='dinar'){
+        currency='د.إ'
+      }
+      
+      else if(res[0].currency=='ponud'){
+        currency='£'
+      }
+      
+    })
     this.chartOptions = {
       series: [
         {
@@ -100,12 +122,12 @@ expenses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       tooltip: {
         y: {
           formatter: function(val) {
-            return "$ " + val + " thousands";
+            return currency+" "+ val;
           }
         }
       }
     };
-      this.service.getYearlyData("2022", "aditya@gmail.com").subscribe({next: (data)=>{ // change the email argument according to current logged in user
+      this.service.getYearlyData((new Date().getFullYear()).toString(),JSON.parse(localStorage.getItem('userData')).email).subscribe({next: (data)=>{ // change the email argument according to current logged in user
         data.forEach(item => {
           const monthIndex = parseInt(item.date.substring(5, 7));
           if(item.expenseType === "expense"){
@@ -173,13 +195,13 @@ expenses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
           tooltip: {
             y: {
               formatter: function(val) {
-                return "$ " + val + " thousands";
+                return currency + " " + val ;
               }
             }
           }
         }
       }
-    });
+    })
   }
   ngOnInit() {
   }
