@@ -15,6 +15,7 @@ export class MyProfileComponent implements OnInit {
   signupForm: FormGroup;
   data;
   isDataAvailable = false;
+  updateProfile:boolean = false;
 
   constructor(
     private usersService: UsersService,
@@ -51,6 +52,12 @@ export class MyProfileComponent implements OnInit {
       this.usersService.user.next(res);
       console.log('response after submit', res);
     });
+
+    this.updateProfile=true;
+
+    setTimeout(()=>{
+      this.updateProfile=false
+    },5000)
 
     console.log();
   }

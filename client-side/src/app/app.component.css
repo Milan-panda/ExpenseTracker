@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-
 @media screen and (max-width: 767px) {
   .card-data-component{
     justify-content: center !important ;

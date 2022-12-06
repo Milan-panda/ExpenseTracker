@@ -1,13 +1,18 @@
-<div class="container mt-5">
-    <div class="row">
+<div class=" main-container">
+    <div class="container w-100 d-flex align-items-center flex-column">
       <div *ngIf="isLoading" style="text-align: center;">
         <app-loading-spinner></app-loading-spinner>
       </div>
-      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <div *ngIf="!isLoading">
+      <div class="col-xs-12 col-sm-11 col-md-5 col-sm-offset-1 col-md-offset-2 mb-4 w-100 login-form">
         <div class="alert alert-danger" *ngIf="errorMsg">
           {{errorMsg}}
         </div>
-        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+        <div class="login-heading text-center">
+          <h3>Welcome Back</h3>
+          <h6>Enter your credentials to access your account</h6>
+        </div>
+        <form class="pb-4" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
          
           <div class="form-group mb-3">
             <label for="email">Email </label>
@@ -15,6 +20,7 @@
               type="email"
               id="email"
               formControlName="email"
+              placeholder="Enter your email"
               class="form-control"/>
             <div
               class="alert alert-danger"
@@ -25,9 +31,10 @@
             <div class="form-group mb-3">
               <label for="number">Password</label>
               <input
-                type="text"
+                type="password"
                 id="password"
                 formControlName="password"
+                placeholder="Enter your password"
                 class="form-control"/>
             </div>
            
@@ -35,13 +42,16 @@
             class="alert alert-danger"
             *ngIf="signupForm.invalid && signupForm.touched">
             Please enter all data correctly!</div>
-          <button class="btn btn-success" type="submit" [disabled]="submitted()">
-            Submit
+          <button class="btn" type="submit" [disabled]="submitted()">
+            Sign In
           </button>
-          <p>New to Expense Tracker</p>
-          <a routerLink="/register">Sign Up</a>
         </form>
       </div>
+      <div class="d-flex alternate-option justify-content-center">
+        <p class="pe-2">New to Expense Tracker?</p>
+        <a class="text-decoration-none" routerLink="/register">Sign Up</a>
+      </div>
+    </div>
     </div>
   
   </div>
