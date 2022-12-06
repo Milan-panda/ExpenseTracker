@@ -21,6 +21,7 @@ import { AddExpenseComponent } from './add-expense/add-expense.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AddBillComponent } from './add-bill/add-bill.component';
 import { BillTableComponent } from './bill-table/bill-table.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { BillTableComponent } from './bill-table/bill-table.component';
     LoadingSpinnerComponent,
     AddExpenseComponent,
     AddBillComponent,
-    BillTableComponent
+    BillTableComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,10 @@ import { UsersService } from '../shared/services/users.service';
 export class CardDataComponent implements OnInit,OnChanges {
 
   @Input() data:any[]=null;
+  @Input() isBalance:boolean=false;
+  @Input() isIncome:boolean=false;
+  @Input() isExpense:boolean=false;
+  @Input() isTransaction:boolean=false;
 
   constructor(private expenseDataService:ExpenseDataService, private userDataService:UsersService) { }
 

@@ -4,13 +4,23 @@
 <div
   class="container d-flex justify-content-between m-auto flex-wrap card-data-component"
 >
-  <app-card-data [data]="montlyIncome"></app-card-data>
-  <app-card-data [data]="expense"></app-card-data>
-  <app-card-data [data]="balance"></app-card-data>
-  <app-card-data [data]="transactions"></app-card-data>
-  <div class="d-flex justify-content-between w-100">
-    <app-expense-table [recentTransaction]="true"></app-expense-table>
-
-    <app-bill-table [recentBill]="true"></app-bill-table>
+  <app-card-data [data]="montlyIncome" [isIncome]="true"></app-card-data>
+  <app-card-data [data]="expense" [isExpense]="true"></app-card-data>
+  <app-card-data [data]="balance" [isBalance]="true"></app-card-data>
+  <app-card-data [data]="transactions" [isTransaction]="true"></app-card-data>
+  <div class="d-flex justify-content-between w-100 mt-5">
+    <div class="expenses">
+      <h3>Recent Transactions</h3>
+      <app-expense-table [recentTransaction]="true"></app-expense-table>
+    </div>
+    <div class="bills">
+      <h3>Recently Added Bill</h3>
+      <app-bill-table [recentBill]="true"></app-bill-table>
+    </div>
   </div>
+</div>
+<div>
+
+<div class="m-auto mt-3">
+  <app-footer></app-footer>
 </div>

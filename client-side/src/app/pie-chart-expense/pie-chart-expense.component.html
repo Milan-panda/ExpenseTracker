@@ -1,9 +1,13 @@
-<div class="container">
-    <apx-chart
+<div class="container" >
+    <apx-chart *ngIf="foodDrinks || shopping || grocery || transportation || others"
     [series]="chartOptions.series"
     [chart]="chartOptions.chart"
     [labels]="chartOptions.labels"
     [responsive]="chartOptions.responsive"></apx-chart>
+    <div style="text-align: center;" *ngIf="!foodDrinks && !shopping && !grocery && !transportation && !others">
+      <img style="width: 50%;" src="../../assets/noData.svg" alt="">
+      <h3 class="mt-3">No data found...✏️</h3>
+    </div>
   </div>
   
   

@@ -1,3 +1,12 @@
 .card{
   margin: 1.5rem 0rem;
+  box-shadow: 4px 10px 20px gray;
+  transition: border-radius 0.5s,
+  transform 1s;
+}
+.card:hover{
+cursor: pointer;
+  border-bottom-right-radius: 50px;
+ border-top-left-radius: 50px;
+  transform: scale(1.05);
 }

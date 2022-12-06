@@ -48,6 +48,7 @@ export class MyProfileComponent implements OnInit {
     console.log('form data', this.data);
 
     this.usersService.updateUserData(this.data).subscribe((res) => {
+      this.usersService.user.next(res);
       console.log('response after submit', res);
     });
 

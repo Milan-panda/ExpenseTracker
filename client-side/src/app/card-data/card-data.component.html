@@ -1,7 +1,13 @@
 <div class="card" style="width: 18rem;" *ngIf="data">
-    <div class="card-body">
-      <h5 class="card-title">{{data[0]}}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{data[1]}}</h6>
+    <div class="card-body d-flex align-items-center">
       
+      <img src="../../assets/income.png" *ngIf="isIncome">
+      <img src="../../assets/expenses.png" style="width: 60px;" *ngIf="isExpense">
+      <img src="../../assets/balance.png" style="width: 60px;" *ngIf="isBalance">
+      <img src="../../assets/transaction.png" style="width: 60px;" *ngIf="isTransaction">
+      <div class="ms-3">
+        <h5 class="card-title" [ngStyle]="{ color: isIncome == true ? 'green' : isExpense == true ? 'red' : isTransaction == true ? 'blue' : isBalance == true ? data[0] > 0 ? 'green' : 'red' : 'red' }" >{{data[0]}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{data[1]}}</h6>
+      </div>
     </div>
 </div>

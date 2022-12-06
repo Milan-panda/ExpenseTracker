@@ -1,5 +1,4 @@
-<div class="container mt-3">
-  <h3 *ngIf="recentBill">Recently Added Bill</h3>
+<div class="container mt-3" [ngStyle]="{ backgroundColor: recentBill == true ? 'aquamarine' : ''}">
   <div class="add-expense-modal" *ngIf="!recentBill">
     <app-add-bill (myOutput) ="getUpdatedData($event)"></app-add-bill>
   </div>
