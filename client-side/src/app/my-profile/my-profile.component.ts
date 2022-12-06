@@ -50,16 +50,12 @@ export class MyProfileComponent implements OnInit {
 
     this.usersService.updateUserData(this.data).subscribe((res) => {
       this.usersService.user.next(res);
+      this.updateProfile=true;
+      setTimeout(()=>{
+        this.updateProfile=false 
+      },3000)
       console.log('response after submit', res);
     });
-
-    this.updateProfile=true;
-
-    setTimeout(()=>{
-      this.updateProfile=false
-    },5000)
-
-    console.log();
   }
   onDelete() {
     if (confirm('Are you sure to delete your profile')) {
