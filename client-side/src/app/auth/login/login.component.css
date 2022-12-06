@@ -1,0 +1,47 @@
+.main-container {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: #f2f6ff;
+}
+
+.login-form {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 2em;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.login-form label{
+  color: #35547f;
+  font-weight: 600;
+}
+.login-form button {
+  width: 100%;
+  background: #0069ff;
+  border: none;
+  color: #fff;
+}
+
+.login-heading {
+  padding: 1.5em 0.5em;
+}
+.login-heading h3 {
+  color: #35547f;
+}
+.login-heading h6 {
+  color: #abb7ca;
+}
+
+.alternate-option p{
+  color: #abb7ca;
+  font-weight: 500;
+}
+.alternate-option a{
+  font-weight: 500;
+}
+
+input:focus {
+  outline: none !important;
+  box-shadow: none;
+}
+

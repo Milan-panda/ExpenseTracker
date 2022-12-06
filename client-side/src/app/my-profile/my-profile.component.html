@@ -1,26 +1,38 @@
-<div  *ngIf="isDataAvailable" class="col-xs-12 col-md-6 col-md-offset-3">
-  <div class="mb-3">
-    <label for="firstName" class="form-label" >First Name</label>
-    <input type="firstName" class="form-control" id="firstName" name="firstName" [(ngModel)]="data.firstName" >
+<div class="container main-container">
+  <div class="w-100 d-flex align-items-center flex-column">
+    <div class="alert alert-success col-xs-12 col-sm-11 col-md-5 col-sm-offset-1 col-md-offset-2 mb-4" *ngIf="updateProfile">
+      <h6>Profile Updated successfully!!!</h6>
+    </div>
+    <div  *ngIf="isDataAvailable" class="col-xs-12 col-sm-11 col-md-5 col-sm-offset-1 col-md-offset-2 mb-4 login-form">
+      <div class="mb-3">
+        <label for="firstName" class="form-label" >First Name</label>
+        <input type="firstName" class="form-control" id="firstName" name="firstName" [(ngModel)]="data.firstName" >
+      </div>
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="data.lastName"  >
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="email" name="email" [(ngModel)]="data.email" disabled >
+      </div>
+      <div class="mb-3">
+        <label for="currency" class="form-label">Currency</label>
+        <select id="currency" class="form-select" [(ngModel)]="data.currency" disabled>
+          <option value="rupee">INR | ₹</option>
+          <option value="dollar">USD | $</option>
+          <option value="euro">EUR | €</option>
+          <option value="dinar">AED | د.إ</option>
+          <option value="pound">GBP | £</option>
+        </select>
+      </div>
+      <div class="action-buttons d-flex justify-content-around">
+        <button type="submit" class="btn btn-success" (click)="onSubmit()">Update Profile</button>
+        <button type="submit" class="btn btn-danger" (click)="onDelete()">Delete Profile</button>
+      </div>
+    </div>
   </div>
-  <div class="mb-3">
-    <label for="lastName" class="form-label">Last Name</label>
-    <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="data.lastName"  >
-  </div>
-  <div class="mb-3">
-    <label for="email" class="form-label">Email</label>
-    <input type="text" class="form-control" id="email" name="email" [(ngModel)]="data.email" disabled >
-  </div>
-  <div class="mb-3">
-    <label for="currency" class="form-label">Currency</label>
-    <select id="currency" class="form-select" [(ngModel)]="data.currency" disabled>
-      <option value="rupee">INR | ₹</option>
-      <option value="dollar">USD | $</option>
-      <option value="euro">EUR | €</option>
-      <option value="dinar">AED | د.إ</option>
-      <option value="pound">GBP | £</option>
-    </select>
-  </div>
-  <button type="submit" class="btn btn-success" (click)="onSubmit()">Update Profile</button>
-  <button type="submit" class="btn btn-danger" (click)="onDelete()">Delete Profile</button>
 </div>
+
+
+

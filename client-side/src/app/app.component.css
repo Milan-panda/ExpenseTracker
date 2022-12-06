@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-.main-component{
-  background-color: #e1e3e7;  
-}
-
 @media screen and (max-width: 767px) {
   .card-data-component{
     justify-content: center !important ;
