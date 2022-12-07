@@ -43,14 +43,12 @@ export class RegisterComponent implements OnInit {
 
     this.authService.authUserRegister(this.userInfo).subscribe(
       (res) => {
-        console.log(res);
         setTimeout(() => {
           this.isLoading = false;
         }, 1000);
         this.router.navigate(['login']);
       },
       (error) => {
-        console.log(error);
         setTimeout(() => {
           this.isLoading = false;
           this.errorMsg = error.error.message;

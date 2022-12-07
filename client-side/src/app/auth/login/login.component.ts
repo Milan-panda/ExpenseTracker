@@ -36,12 +36,10 @@ export class LoginComponent implements OnInit {
     this.userInfo.email=this.signupForm.value.email;
     this.userInfo.password=this.signupForm.value.password;
     this.authService.authUserLogin(this.userInfo).subscribe(res=>{
-      console.log(res);
         this.isLoading=false;
         this.router.navigate(['/dashboard']);
     },
     error =>{
-      console.log(error);
       setTimeout(() => {
         this.errorMsg=error.error.message;
         this.isLoading=false;

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, pipe, Subject, tap } from 'rxjs';
 import { UserAuthModel } from '../model/user.model';
 import { UserInfoModel } from '../user.model';
+import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class AuthService {
 
   private tokenExpirationTimer: any;
 
-  constructor(private httpClient: HttpClient, private router:Router) {}
+  constructor(private httpClient: HttpClient, private router:Router, private usersService:UsersService) {}
 
   public authUserLogin(userInfo: UserInfoModel): Observable<any> {
     const url = this.apiURL + 'auth';
@@ -28,7 +29,12 @@ export class AuthService {
       const expirationDate = new Date( new Date().getTime() + 3600*1000 );
       const user = new UserAuthModel(body.email, resData.data, expirationDate);
       localStorage.setItem('userData',JSON.stringify(user));
-      
+      this.usersService.getUserData(body.email).subscribe(res=>{
+        this.usersService.user.next({'firstName': res[0].firstName});
+        this.usersService.user.subscribe(user=>{
+          
+        })
+      })
       this.user.next(user);
       this.autoLogout(3600*1000);
     }));

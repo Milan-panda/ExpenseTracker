@@ -34,7 +34,6 @@ export class AddExpenseComponent implements OnInit {
 
   onSubmit(){
     this.expense = new ExpenseModel();
-    console.log(this.addExpenseForm);
     this.expense.date = this.addExpenseForm.value.date;
     this.expense.expenseType = this.addExpenseForm.value.expenseType;
     this.expense.category = this.addExpenseForm.value.category;
@@ -43,14 +42,12 @@ export class AddExpenseComponent implements OnInit {
     this.expense.paymentMode = this.addExpenseForm.value.paymentMode;
     this.expense.email = JSON.parse(localStorage.getItem('userData')).email;
     this.expenseDataService.addExpenseData(this.expense).subscribe(res=>{
-      console.log("thisssss",res);
       this.myOutput.emit(res);
     })
 
     this.expenseDataService.getTableData(this.expense.email).subscribe((res) => {      
       if(res){
         for(let key in res){
-          console.log("data",res[key]);
           res[key].date = new Date(res[key].date).getDate().toString()+"/"+new Date(res[key].date).getMonth().toString() +"/"+ new Date(res[key].date).getFullYear().toString();          
         }
 

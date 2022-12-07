@@ -18,16 +18,11 @@ export class CardDataComponent implements OnInit,OnChanges {
   constructor(private expenseDataService:ExpenseDataService, private userDataService:UsersService) { }
 
 
-  ngOnInit(): void {
- 
-    console.log("onint",this.data);
-    
-    // console.log(this.data.split(" "));
+  ngOnInit(): void {    
     
     
   }
   ngOnChanges(changes: SimpleChanges): void {
-      console.log("hieee",this.data);
       
   }
 

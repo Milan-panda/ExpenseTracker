@@ -36,17 +36,13 @@ export class MyProfileComponent implements OnInit {
         this.usersService
           .getUserData(JSON.parse(localStorage.getItem('userData')).email)
           .subscribe((res) => {
-            console.log('ressss', res);
             this.data = res[0];
-            console.log('data', this.data);
-
             this.isDataAvailable = true;
           })
       );
     });
   }
   onSubmit() {
-    console.log('form data', this.data);
 
     this.usersService.updateUserData(this.data).subscribe((res) => {
       this.usersService.user.next(res);
@@ -54,13 +50,11 @@ export class MyProfileComponent implements OnInit {
       setTimeout(()=>{
         this.updateProfile=false 
       },3000)
-      console.log('response after submit', res);
     });
   }
   onDelete() {
     if (confirm('Are you sure to delete your profile')) {
       this.usersService.deleteUsersData(this.data._id).subscribe((res) => {
-        console.log(res);
         this.authService.logout();
       });
     }

@@ -19,9 +19,7 @@ export class BillDataService {
   }
 
   public addBillData(addBill: BillModel): Observable<any> {
-    const url = this.apiURL + 'bill';
-    console.log("in service",addBill);
-    
+    const url = this.apiURL + 'bill';    
     let body = {
       dueDate: addBill.dueDate,
       category: addBill.category,
@@ -46,7 +44,6 @@ export class BillDataService {
   //   const body={
   //     paid:!event.paid
   //   }
-  //   console.log("bodydyyy",body);
   //   return this.httpClient.put<any>(url,body,{params:queryParam});
   // }
 }

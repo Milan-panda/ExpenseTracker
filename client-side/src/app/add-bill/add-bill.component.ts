@@ -26,23 +26,18 @@ export class AddBillComponent implements OnInit {
 
   onSubmit(){
     this.bill = new BillModel();
-    console.log(this.addBillForm);
     this.bill.dueDate = this.addBillForm.value.date;
     this.bill.category = this.addBillForm.value.category;
     this.bill.description = this.addBillForm.value.desc;
     this.bill.amount = this.addBillForm.value.amount;
     this.bill.email = JSON.parse(localStorage.getItem('userData')).email;
-    console.log("after adding",this.bill);
-    
     this.billDataService.addBillData(this.bill).subscribe(res=>{
-      console.log("thisssss",res);
       this.myOutput.emit(res);
     })
 
     this.billDataService.getBillData(this.bill.email).subscribe((res) => {      
       if(res){
         for(let key in res){
-          console.log("data",res[key]);
           res[key].dueDate = new Date(res[key].dueDate).getDate().toString()+"/"+new Date(res[key].dueDate).getMonth().toString() +"/"+ new Date(res[key].dueDate).getFullYear().toString();          
         }
         res;
