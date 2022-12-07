@@ -1,15 +1,32 @@
-<div class="container mt-3" [ngStyle]="{ backgroundColor: recentTransaction == true ? 'antiquewhite' : ''}" >
+<div
+  class="container mt-3"
+  [ngStyle]="{
+    backgroundColor: recentTransaction == true ? 'antiquewhite' : ''
+  }"
+>
   <div class="add-expense-modal" *ngIf="!recentTransaction">
-    <app-add-expense (myOutput) ="getUpdatedData($event)"></app-add-expense>
+    <app-add-expense (myOutput)="getUpdatedData($event)"></app-add-expense>
   </div>
-  <button class="btn btn-primary" (click)="onPdfDownloadModal(content)" *ngIf="!recentTransaction">Download PDF</button>
+  <button
+    class="btn btn-primary download-pdf-button p-3 m-2 d-flex align-items-center justify-content-center"
+    (click)="onPdfDownloadModal(content)"
+    *ngIf="!recentTransaction"
+  >
+    <i class="bi bi-file-arrow-down me-1"></i>
+    Download PDF
+  </button>
   <ng-template #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Download Transactions</h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
     </div>
     <div class="modal-body">
-      <div class="alert alert-warning" role="alert"  [hidden]="isFormValid">
+      <div class="alert alert-warning" role="alert" [hidden]="isFormValid">
         Please select your preference!
       </div>
       <form #pdfForm="ngForm" (submit)="submitPdfForm(pdfForm)" novalidate>
@@ -17,60 +34,88 @@
           <label class="mb-2">Select your preference:</label>
           <div class="input-group d-block">
             <div>
-              <input type="radio" id="monthly" name="preference" value="Monthly" class="radio-button"  ngModel required>
+              <input
+                type="radio"
+                id="monthly"
+                name="preference"
+                value="Monthly"
+                class="radio-button"
+                ngModel
+                required
+              />
               <label for="monthly" class="mx-1">Monthly</label>
             </div>
             <div>
-              <input type="radio" name="preference" id="yearly" value="Yearly" class="radio-button" ngModel required>
+              <input
+                type="radio"
+                name="preference"
+                id="yearly"
+                value="Yearly"
+                class="radio-button"
+                ngModel
+                required
+              />
               <label for="yearly" class="mx-1">Yearly</label>
-
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-outline-dark" >Save</button>
+          <button type="submit" class="btn btn-outline-dark">Save</button>
         </div>
       </form>
     </div>
   </ng-template>
-  
-  <table class="table table-hover" #table>
-    <thead>
-      <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Category</th>
-        <th scope="col">Payment Mode</th>
-        <th scope="col">Description</th>
-        <th scope="col">Expense Type</th>
-        <th scope="col">Amount</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let row of (recentTransaction? data.slice(-5).reverse() : data.reverse()) | paginate: { itemsPerPage: 10, currentPage: p }" >
-        <td>
-          {{ row.date }}
-        </td>
-        <td>
-          {{ row.category }}
-        </td>
-        <td>
-          {{ row.paymentMode }}
-        </td>
-        <td>
-          {{ row.description }}
-        </td>
-        <td>
-          {{ row.expenseType }}
-        </td>
-        <td>
-          {{ row.amount }}
-        </td>
-        <td *ngIf="!recentTransaction">
-          <button class="editButton" (click)="onDelete(row)"><i class="bi bi-trash3-fill"></i></button>
-        </td>
-      </tr>
-    </tbody>
-    <pagination-controls *ngIf="!recentTransaction" (pageChange)="p = $event"></pagination-controls>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-hover" #table>
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Category</th>
+          <th scope="col">Payment Mode</th>
+          <th scope="col">Description</th>
+          <th scope="col">Expense Type</th>
+          <th scope="col">Amount</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let row of (recentTransaction
+              ? data.slice(-5).reverse()
+              : data.reverse()
+            ) | paginate : { itemsPerPage: 10, currentPage: p }
+          "
+        >
+          <td>
+            {{ row.date }}
+          </td>
+          <td>
+            {{ row.category }}
+          </td>
+          <td>
+            {{ row.paymentMode }}
+          </td>
+          <td>
+            {{ row.description }}
+          </td>
+          <td>
+            {{ row.expenseType }}
+          </td>
+          <td>
+            {{ row.amount }}
+          </td>
+          <td *ngIf="!recentTransaction">
+            <button class="editButton" (click)="onDelete(row)">
+              <i class="bi bi-trash3-fill"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <pagination-controls class="my-pagination"
+        *ngIf="!recentTransaction"
+        (pageChange)="p = $event"
+      ></pagination-controls>
+    </table>
+  </div>
 </div>

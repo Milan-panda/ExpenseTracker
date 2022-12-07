@@ -1,4 +1,10 @@
-.container{
-    background-color: #fff;
-    border-radius: 8px;
+.container {
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+@media screen and (max-width: 990px) {
+  .dashboard-img {
+    display: none;
+  }
 }

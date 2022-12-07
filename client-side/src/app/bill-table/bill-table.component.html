@@ -2,6 +2,7 @@
   <div class="add-expense-modal" *ngIf="!recentBill">
     <app-add-bill (myOutput) ="getUpdatedData($event)"></app-add-bill>
   </div>
+  <div class="table-responsive">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -34,4 +35,5 @@
     </tbody>
     <pagination-controls *ngIf="!recentBill" (pageChange)="p = $event"></pagination-controls>
   </table>
+</div>
 </div>
