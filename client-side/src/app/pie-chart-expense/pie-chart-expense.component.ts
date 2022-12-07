@@ -74,15 +74,15 @@ export class PieChartExpenseComponent implements OnInit {
     this.service.getMonthlyData((new Date().getMonth()+1).toString(),JSON.parse(localStorage.getItem('userData')).email).subscribe({next: (data) => { // change the email argument according to current logged in user
       data.forEach(item => {
         if(item.expenseType=="expense"){
-          if(item.category == "others"){
+          if(item.category == "Others"){
             this.others += item.amount;
-          }else if(item.category == "shopping"){
+          }else if(item.category == "Shopping"){
             this.shopping += item.amount
-          }else if(item.category == "grocery"){
+          }else if(item.category == "Grocery"){
             this.grocery += item.amount
-          }else if(item.category == "food&drinks"){
+          }else if(item.category == "Food & Drinks"){
             this.foodDrinks += item.amount
-          }else if(item.category == "transportation"){
+          }else if(item.category == "Transportation"){
             this.transportation += item.amount
           }
         }
@@ -125,7 +125,7 @@ export class PieChartExpenseComponent implements OnInit {
             breakpoint: 600,
             options: {
               chart: {
-                width: 400
+                width: 350
               }
             }
           }
