@@ -17,3 +17,17 @@
     padding: 1em;
     background-color: aquamarine;
 }
+
+@media screen and (max-width: 767px) {
+    .recent-table{
+        flex-direction: column;
+    }
+    .card-data-component{
+        justify-content: center !important;
+    }
+    .recent-table .expenses, .recent-table .bills{
+        width: 100%;
+        margin: 2em 0;
+    }
+  }
+

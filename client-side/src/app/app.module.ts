@@ -21,8 +21,7 @@ import { AddExpenseComponent } from './add-expense/add-expense.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AddBillComponent } from './add-bill/add-bill.component';
 import { BillTableComponent } from './bill-table/bill-table.component';
-import { FooterComponent } from './footer/footer.component';
-
+  
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +40,6 @@ import { FooterComponent } from './footer/footer.component';
     AddExpenseComponent,
     AddBillComponent,
     BillTableComponent,
-    FooterComponent
   ],
   imports: [
     BrowserModule,

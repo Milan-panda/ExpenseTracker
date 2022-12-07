@@ -11,7 +11,8 @@ import {
   ApexStroke,
   ApexXAxis,
   ApexFill,
-  ApexTooltip
+  ApexTooltip,
+  ApexResponsive
 } from "ng-apexcharts";
 import { ExpenseDataService } from '../shared/services/expense-data.service';
 import { UsersService } from '../shared/services/users.service';
@@ -27,6 +28,8 @@ export type ChartOptions = {
   tooltip: ApexTooltip;
   stroke: ApexStroke;
   legend: ApexLegend;
+  responsive: ApexResponsive[];
+
 };
 
 
@@ -81,6 +84,32 @@ expenses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         width:600,
     
       },
+      responsive: [
+        {
+          breakpoint: 3400,
+          options: {
+            chart: {
+              width: 600
+            }
+          }
+        },
+        {
+          breakpoint: 800,
+          options: {
+            chart: {
+              width: 500
+            }
+          }
+        },
+        {
+          breakpoint: 600,
+          options: {
+            chart: {
+              width: 400
+            }
+          }
+        }
+      ],
       plotOptions: {
         bar: {
           horizontal: false,
@@ -154,6 +183,32 @@ expenses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             width:600,
         
           },
+          responsive: [
+            {
+              breakpoint: 3400,
+              options: {
+                chart: {
+                  width: 600
+                }
+              }
+            },
+            {
+              breakpoint: 800,
+              options: {
+                chart: {
+                  width: 500
+                }
+              }
+            },
+            {
+              breakpoint: 600,
+              options: {
+                chart: {
+                  width: 400
+                }
+              }
+            }
+          ],
           plotOptions: {
             bar: {
               horizontal: false,

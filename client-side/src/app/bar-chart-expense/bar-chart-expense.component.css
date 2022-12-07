@@ -3,3 +3,8 @@
     margin: 35px auto;
   }
   
+@media screen and (max-width: 600px) {
+  #chart {
+    display: none;
+  }
+}
