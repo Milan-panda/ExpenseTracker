@@ -7,7 +7,7 @@ import { UserInfoModel } from '../user.model';
   providedIn: 'root',
 })
 export class UsersService {
-  apiURL: string = 'http://localhost:8080/';
+  apiURL: string = 'https://expense-tracker-api-ayk2.onrender.com/';
 
   user = new BehaviorSubject<any>(null);
 
