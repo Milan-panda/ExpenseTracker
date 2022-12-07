@@ -18,12 +18,17 @@
           {{ row.dueDate }}
         </td>
         <td>
+          <img src="../../assets/eco-house.png" alt="" style="width: 23px;" *ngIf="row.category == 'Electricity'">
+          <img src="../../assets/mobile-transfer.png" alt="" style="width: 23px;" *ngIf="row.category == 'Mobile Payment'">
+          <img src="../../assets/faucet.png" alt="" style="width: 23px;" *ngIf="row.category == 'Water Bill'">
+          <img src="../../assets/invoice.png" alt="" style="width: 23px;" *ngIf="row.category == 'Wifi Bill'">
+          <img src="../../assets/other.png" alt="" style="width: 23px;" *ngIf="row.category == 'Others'">
           {{ row.category }}
         </td>
         <td>
           {{ row.description }}
         </td>
-        <td>
+        <td class="fw-bold">
           {{ row.amount }}
         </td>
         <td *ngIf="!recentBill">

@@ -52,6 +52,12 @@
           {{ row.date }}
         </td>
         <td>
+          <img src="../../assets/shopping.png" alt="" style="width: 23px;" *ngIf="row.category == 'Shopping'">
+          <img src="../../assets/grocery.png" alt="" style="width: 23px;" *ngIf="row.category == 'Grocery'">
+          <img src="../../assets/food.png" alt="" style="width: 23px;" *ngIf="row.category == 'Food & Drinks'">
+          <img src="../../assets/transport.png" alt="" style="width: 23px;" *ngIf="row.category == 'Transportation'">
+          <img src="../../assets/other.png" alt="" style="width: 23px;" *ngIf="row.category == 'Others'">
+          <img src="../../assets/otherIncome.png" alt="" style="width: 23px;" *ngIf="row.category != 'Others' && row.category != 'Shopping' && row.category != 'Grocery' && row.category != 'Food & Drinks' && row.category != 'Transportation'">
           {{ row.category }}
         </td>
         <td>
@@ -61,9 +67,11 @@
           {{ row.description }}
         </td>
         <td>
+          <img src="../../assets/incomei.png" alt="" style="width: 23px;" *ngIf="row.expenseType == 'income'">
+          <img src="../../assets/expense.png" alt="" style="width: 23px;" *ngIf="row.expenseType == 'expense'">
           {{ row.expenseType }}
         </td>
-        <td>
+        <td class="fw-bold" [ngStyle]="{'color':row.expenseType=='income'?'green':'red'}">
           {{ row.amount }}
         </td>
         <td *ngIf="!recentTransaction">
