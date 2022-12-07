@@ -7,7 +7,7 @@ import { BillModel } from '../bill.model';
   providedIn: 'root'
 })
 export class BillDataService {
-  apiURL: string = 'http://localhost:8080/';
+  apiURL: string = 'https://expense-tracker-api-ayk2.onrender.com/';
 
   constructor(private httpClient: HttpClient) { }
 

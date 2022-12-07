@@ -14,7 +14,7 @@ const billRoute = require("./routes/bills");
 connection();
 
 var corsOptions = {
-    origin: 'http://localhost:4200',
+    origin: 'https://expenz-tracker.netlify.app',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
 //middlewares

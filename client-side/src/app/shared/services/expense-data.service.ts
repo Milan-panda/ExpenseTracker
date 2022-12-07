@@ -9,7 +9,7 @@ import 'jspdf-autotable'
   providedIn: 'root',
 })
 export class ExpenseDataService {
-  apiURL: string = 'http://localhost:8080/';
+  apiURL: string = 'https://expense-tracker-api-ayk2.onrender.com/';
   monthlyData = [];
   yearlyData = [];
 
@@ -71,11 +71,11 @@ export class ExpenseDataService {
     return this.httpClient.delete<any>(url, { params: queryParam });
   }
   public getMonthlyData(month: string, email: string): Observable<any> {
-    const monthlyURL: string = `http://localhost:8080/monthlyData?month=${month}&email=${email}`;
+    const monthlyURL: string = `https://expense-tracker-api-ayk2.onrender.com/monthlyData?month=${month}&email=${email}`;
     return this.httpClient.get<any>(monthlyURL);
   }
   public getYearlyData(year: string, email: string): Observable<any> {
-    const yearlyURL: string = `http://localhost:8080/yearlyData?year=${year}&email=${email}`;
+    const yearlyURL: string = `https://expense-tracker-api-ayk2.onrender.com/yearlyData?year=${year}&email=${email}`;
     return this.httpClient.get<any>(yearlyURL);
   }
   public pdfDownload(yearlyOrMonthly: string){
