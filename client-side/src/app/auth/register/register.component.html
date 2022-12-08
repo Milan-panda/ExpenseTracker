@@ -57,7 +57,7 @@
             <option value="pound">GBP | £</option>
           </select>
         </div>
-        <div class="form-group mb-3">
+        <div class="form-group">
           <label for="pasword">Password</label>
           <input
             type="password"
@@ -65,6 +65,15 @@
             formControlName="password"
             class="form-control"
           />
+        </div>
+        <div id="passwordHelpBlock" class="form-text">
+          * Your password must be 8-20 characters long. 
+        </div>
+        <div id="passwordHelpBlock" class="form-text">
+          * Password must have at least 1 upper-case, 1 lower-case and a symbol.
+        </div>
+        <div id="passwordHelpBlock" class="form-text mb-3">
+          * Password must not contain spaces or emojis.
         </div>
         <div
           class="alert alert-danger"
