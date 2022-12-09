@@ -142,7 +142,7 @@ expenses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       yaxis: {
         title: {
-          text: "$ (thousands)"
+          text: "Amount"
         }
       },
       fill: {
@@ -241,7 +241,7 @@ expenses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
           },
           yaxis: {
             title: {
-              text: "$ (thousands)"
+              text: "Amount"
             }
           },
           fill: {
